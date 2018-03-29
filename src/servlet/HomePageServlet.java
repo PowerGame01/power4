@@ -15,7 +15,7 @@ public class HomePageServlet extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		
+		req.getParameter("nom");
 	}
 
 }
