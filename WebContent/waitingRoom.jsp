@@ -7,6 +7,6 @@
 <title>Power4</title>
 </head>
 <body>
-
+	<h1>Waiting for a new player</h1>
 </body>
 </html>
