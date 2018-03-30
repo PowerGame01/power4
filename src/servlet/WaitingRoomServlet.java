@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-@WebServlet("/WaitingRoomServlet")
+@WebServlet("/Waiting")
 
 public class WaitingRoomServlet extends HttpServlet {
 
