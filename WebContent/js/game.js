@@ -4,27 +4,38 @@
 
 jQuery(document).ready(function() {
 	
-	/*$("td").on("click", function() {
+	var col;
+	var row;
+	var turn = "X";
+	var player = "X";
+	var count = 0;
+	
+	$("td").on("click", function() {
 		var $this = $(this);
-		var col   = $this.index();
-		var row   = $this.closest('tr').index();
+		col = $this.index();
+		row = $this.closest('tr').index();
+		if ($this.text() == ""){
+			$this.text(playerTurn()).
+				css("color","red").
+				css("font-size","50px").
+				css("padding","0px").
+				css("margin","0px");
+		}else{
+			alert ("Wrong move");
+		}
 		
-		alert( [col,row].join(',') );
-	})*/
+		if (hasWon() == 1){
+			alert("you won")
+		}
+		alert( $this.cellIndex());
+	})
 	
-	/*$("td").click(function(){
-
-	    var column = this.cellIndex;
-	    var row = $(this).parentNode.rowIndex;
-
-	    alert("[" + column + ", " + row + "]");
-	});*/
+	function playerTurn() {
+		return (turn == "X") ? turn="O" : turn="X";
+	}
 	
-	/*$("td").click(function(){
+	function hasWon(rowNum) {
 
-	    var column = $(this).parent().children().index(this);
-	    var row = $(this).parent().parent().children().index(this.parentNode);
+	}
 
-	    alert([column, ',', row].join(''));
-	})*/
 })
