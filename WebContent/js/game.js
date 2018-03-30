@@ -27,8 +27,16 @@ jQuery(document).ready(function() {
 		if (hasWon() == 1){
 			alert("you won")
 		}
-		alert( $this.cellIndex());
+		witchTd(col, row);
 	})
+	
+	function wichTd(col, row){
+		var x = 0;
+			if(row > 0)
+				x = row * 5 + (col + 1);
+			else x += (col+1);
+		console.log(x);
+	}
 	
 	function playerTurn() {
 		return (turn == "X") ? turn="O" : turn="X";
