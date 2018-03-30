@@ -13,7 +13,7 @@
 	<table>
 	<tr>
 	<th>Player Name:</th>
-	<td><input type="text" name="player"></td>
+	<td><input type="text" name="name"></td>
 	</tr>
 	<tr>
 	<td><input type="submit" value="login"></td>
