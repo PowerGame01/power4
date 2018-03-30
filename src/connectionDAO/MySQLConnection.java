@@ -32,7 +32,7 @@ public class MySQLConnection {
     public MySQLConnection() {        
     	        
     	        try {
-    	            FileReader in = new FileReader("/WEB-INF/properties/configDB.prop");
+    	            FileReader in = new FileReader("properties/configDB.prop");
     	            Properties configProp = new Properties();
     	            configProp.load(in);
     	            HOST = configProp.getProperty("HOST");
