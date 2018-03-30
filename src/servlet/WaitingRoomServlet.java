@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-@WebServlet("/Waiting")
+@WebServlet("/waiting")
 
 public class WaitingRoomServlet extends HttpServlet {
 
@@ -16,6 +16,8 @@ public class WaitingRoomServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		
+		
+		req.getRequestDispatcher("/waitingRoom.jsp").forward(req, res);
 		
 	}
 	
