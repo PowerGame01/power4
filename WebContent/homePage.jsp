@@ -7,9 +7,20 @@
 <title>Power4</title>
 </head>
 <body>
-	<h1>Bienvenue</h1>
+	<h1>Welcome in Power4 Game</h1>
 	<form>
-		<label>Pseudo</label><input type = "text">
+	
+	<table>
+	<tr>
+	<th>Player Name:</th>
+	<td><input type="text" name="name"></td>
+	</tr>
+	<tr>
+	<td><input type="submit" value="login"></td>
+	</tr>
+	
+	</table>
+		
 	</form>
 </body>
 </html>
