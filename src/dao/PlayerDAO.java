@@ -34,43 +34,43 @@ public class PlayerDAO extends DAO<Player>{
 	}
 
 	@Override
-	public Player create(Player obj) {
+	public Player create(Player player) {
 		try {
 			String request = "INSERT INTO" + TABLE + "(name,waiting) VALUES (?,?)";
 			PreparedStatement ps = this.connection.prepareStatement(request,Statement.RETURN_GENERATED_KEYS);
-			ps.setString(1, obj.getName());
-			ps.setBoolean(2, obj.isWaiting());
+			ps.setString(1, player.getName());
+			ps.setBoolean(2, player.isWaiting());
 			ResultSet rs = ps.getGeneratedKeys();
             int last_inserted_id;
             if (rs.first()) { // Si on a des id créés on lit le premier
                 last_inserted_id = rs.getInt(1);
                 // On récupère l'enregistrement créé
-                obj = this.find(last_inserted_id);
+                player = this.find(last_inserted_id);
             }
 		}catch (SQLException ex) {
 			Logger.getLogger(PlayerDAO.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		return obj;
+		return player;
 	}
 
 	@Override
-	public Player update(Player obj) {
+	public Player update(Player player) {
 		try {
 			String request = "UPDATE " + TABLE + "WHERE id = ?";
 			PreparedStatement ps = this.connection.prepareStatement(request);
-			ps.setBoolean(3, obj.isWaiting());
+			ps.setBoolean(3, player.isWaiting());
 		}catch (Exception ex) {
 			Logger.getLogger(PlayerDAO.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		return obj;
+		return player;
 	}
 
 	@Override
-	public void delete(Player obj) {
+	public void delete(Player player) {
 		try {
             String request = "DELETE FROM " + TABLE + " WHERE id = ?";
             PreparedStatement ps = this.connection.prepareStatement(request);
-            ps.setLong(1, obj.getId());
+            ps.setLong(1, player.getId());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(PlayerDAO.class.getName()).log(Level.SEVERE, null, ex);
