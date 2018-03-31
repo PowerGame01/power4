@@ -24,19 +24,21 @@ jQuery(document).ready(function() {
 		if ($this.text() == ""){
 			$this.text(turn).
 				css("color","red").
-				css("font-size","50px").
-				css("padding","0px").
-				css("margin","0px");
+				css("font-size","50px");
 		// If there is already a cross or a circle we show a popup alert
 		}else{
 			alert ("Wrong move");
 		}
 		// Checking the winning condition
-		if (hasWon() == 1){
+		if (hasWonHor(row) == 1){
 			alert("you won")
 		}
-		gameState(row, col, turn);
+		// If it's the turn of the player, save the move in the changeStateString
+		if (turn == player){
+			gameState(row, col, 1);
+		}
 		console.log(gameStateString);
+		
 	})
 	
 	// Function to convert the index of the td being numbered from 0 to 4
@@ -54,7 +56,7 @@ jQuery(document).ready(function() {
 		// The variable gamestring contains 25 characters which represents the 25 cells of the grid
 		// Every time a player clicks on a td, we use the index of that td to change
 		// a 0 to a 1 in the string
-		gameStateString = replaceAt(gameStateString,wichTd(row, col)-1,turn);
+		gameStateString = replaceAt(gameStateString,wichTd(col, row)-1,turn);
 		return gameStateString;
 	}
 	
@@ -64,12 +66,33 @@ jQuery(document).ready(function() {
 	
 	// Function to put the move of a player in the gameStateString
 	function replaceAt(string, index, replace) {
-		
+		console.log("index :" + index);
 		return string.substring(0, index) + replace + string.substring(index + 1);
 	}
 	
-	function hasWon(rowNum) {
-
+	// Function to check a horizontal victory
+	function hasWonHor(rowNum) {
+		// First loop checks for a win starting from the first cell of a row
+		for (var i = 0 ; i < 5 ; i++){
+			if ($("tr").eq(rowNum).children().eq(i).text() == player){
+				count++;
+				if (count > 3){
+					return 1;
+				}
+			}
+		}
+		count = 0;
+		// Second loop checks for a win starting from the second cell of a row
+		for (var i = 1 ; i < 5 ; i++){
+			if ($("tr").eq(rowNum).children().eq(i).text() == player){
+				count++;
+				if (count > 3){
+					return 1;
+				}
+			}
+		}
+		count = 0;
+		return 0;
 	}
 
 })
