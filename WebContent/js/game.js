@@ -101,6 +101,7 @@ jQuery(document).ready(function() {
 	function hasWonVert(colNum) {
 		// First loop checks for a win starting from the first cell of a column
 		for (var j = 0 ; j < 2 ; j++){
+			count = 0;
 			for (var i = 0 ; i < 5 ; i++){
 				if ($("tr").eq(i).children().eq(colNum).text() == player){
 					count++;
@@ -109,7 +110,6 @@ jQuery(document).ready(function() {
 			if (count > 3){
 				return 1;
 			}
-			count = 0;
 		}
 		count = 0;
 		return 0;
