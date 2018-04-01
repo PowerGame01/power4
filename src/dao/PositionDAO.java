@@ -11,7 +11,7 @@ import beans.Position;
 
 public class PositionDAO extends DAO<Position>{
 
-	private final String TABLE = "position";
+	private final String TABLE = "positions";
 	
 	@Override
 	public Position find(Integer id) {
@@ -36,9 +36,28 @@ public class PositionDAO extends DAO<Position>{
 	}
 
 	@Override
-	public Position create(Position obj) {
-		// TODO Auto-generated method stub
-		return null;
+	public Position create(Position position) {
+		try {
+			//System.out.println(this.connection.isClosed());
+			String request = "INSERT INTO " + TABLE + " (row,col,id_player) VALUES (?,?,?)";
+//			System.out.println("PlayerDAO before ps");
+			PreparedStatement ps = this.connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
+			System.out.println(position.toString());
+			ps.setInt(1, position.getRow());
+			ps.setInt(2, position.getCol());
+			ps.setInt(3, position.getPlayer());
+			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+            int last_inserted_id;
+            if (rs.first()) { // Si on a des id créés on lit le premier
+                last_inserted_id = rs.getInt(1);
+                // On récupère l'enregistrement créé
+                position = this.find(last_inserted_id);
+            }
+		}catch (SQLException ex) {
+			Logger.getLogger(PlayerDAO.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return position;
 	}
 
 	@Override
