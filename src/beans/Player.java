@@ -13,7 +13,12 @@ public class Player {
 		this.name = name;
 		this.waiting = waiting;
 	}
-
+	
+	public Player(String name, boolean waiting) {
+		this.name = name;
+		this.waiting = waiting;
+	}
+	
 	//Generate Getters and Setters
 	public Integer getId() {
 		return id;

@@ -29,10 +29,12 @@ public class MySQLConnection {
     */
     private static Connection connection;
 
-    public MySQLConnection() {        
-    	        
+    public MySQLConnection() {}
+    	
+    	public static Connection getInstance() {
     	        try {
-    	            FileReader in = new FileReader("properties/configDB.prop");
+    	        	System.out.println("MysqlConn in");
+    	            FileReader in = new FileReader("/home/flavien/git/power4/WebContent/WEB-INF/properties/configDB.prop");
     	            Properties configProp = new Properties();
     	            configProp.load(in);
     	            HOST = configProp.getProperty("HOST");
@@ -53,6 +55,8 @@ public class MySQLConnection {
     	                Logger.getLogger(MySQLConnection.class.getName()).log(Level.SEVERE, null , ex);
     	            }
     	        }
-
-    	    }
-    }
+    	    return connection;
+    	}
+    
+    
+}

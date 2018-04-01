@@ -1,46 +1,59 @@
 package beans;
 
 public class Position {
-	//Setting Variables
-	private Integer id;
-	private Integer row;
-	private Integer col;
 	
-	//Constructor
-	public Position(Integer id, Integer row, Integer col) {
+	int id;
+	int row;
+	int col;
+	int player;
+	
+	
+	public Position(int id, int row, int col, int player) {
+		super();
 		this.id = id;
 		this.row = row;
 		this.col = col;
+		this.player = player;
 	}
 
-	//Generate Getters and Setters
-	public Integer getId() {
+	public Position(int row, int col, int player) {
+		super();
+		this.row = row;
+		this.col = col;
+		this.player = player;
+	}
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Integer getRow() {
+	public int getRow() {
 		return row;
 	}
 
-	public void setRow(Integer row) {
+	public void setRow(int row) {
 		this.row = row;
 	}
 
-	public Integer getCol() {
+	public int getCol() {
 		return col;
 	}
 
-	public void setCol(Integer col) {
+	public void setCol(int col) {
 		this.col = col;
 	}
+
+	public int getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(int player) {
+		this.player = player;
+	}
 	
-	//Override ToString Method
-	@Override
-    public String toString() {
-        return "Position{" + "id=" + id + ", row=" + row + ", col=" + col + '}';
-    }
+	
 }

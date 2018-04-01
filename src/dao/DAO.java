@@ -2,8 +2,10 @@ package dao;
 
 import java.sql.Connection;
 
+import connectionDAO.MySQLConnection;
+
 public abstract class DAO <T>{
-	 protected Connection connection;
+	 protected Connection connection = MySQLConnection.getInstance();
 
 	 // Search information in database
 	 

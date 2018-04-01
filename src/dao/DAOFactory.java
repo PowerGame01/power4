@@ -7,11 +7,11 @@ public class DAOFactory {
 	        return new PositionDAO();
 	    }
 	 
-	 public static GameDAO GameDAO() {
+	 public static GameDAO getGameDAO() {
 		 return new GameDAO();
 	 }
 	 
-	 public static PlayerDAO PlayerDAO() {
+	 public static PlayerDAO getPlayerDAO() {
 		 return new PlayerDAO();
 	 }
 }

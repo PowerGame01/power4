@@ -16,8 +16,7 @@ public class PlayerDAO extends DAO<Player>{
 		Player player = null;
 		try {
 			String request = "SELECT * FROM " + TABLE + " WHERE id = ?";
-			PreparedStatement ps = this.connection.prepareStatement(request,
-            Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = this.connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
 			ps.setLong(1, id);
 			ResultSet result = ps.executeQuery();
 			if (result.first()) {
@@ -36,10 +35,14 @@ public class PlayerDAO extends DAO<Player>{
 	@Override
 	public Player create(Player player) {
 		try {
-			String request = "INSERT INTO" + TABLE + "(name,waiting) VALUES (?,?)";
-			PreparedStatement ps = this.connection.prepareStatement(request,Statement.RETURN_GENERATED_KEYS);
+//			System.out.println(this.connection.isClosed());
+			String request = "INSERT INTO " + TABLE + " (name,waiting) VALUES (?,?)";
+//			System.out.println("PlayerDAO before ps");
+			PreparedStatement ps = this.connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
+			System.out.println(player.toString());
 			ps.setString(1, player.getName());
 			ps.setBoolean(2, player.isWaiting());
+			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
             int last_inserted_id;
             if (rs.first()) { // Si on a des id créés on lit le premier
