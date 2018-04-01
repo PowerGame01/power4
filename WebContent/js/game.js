@@ -39,9 +39,9 @@ jQuery(document).ready(function() {
 			alert("you wonVert")
 		}
 		
-		if (hasWonDiag() == 1){
+		/*if (hasWonDiag() == 1){
 			alert("you wonDiag")
-		}
+		}*/
 		// If it's the turn of the player, save the move in the changeStateString
 		if (turn == player){
 			gameState(row, col, 1);
@@ -116,7 +116,7 @@ jQuery(document).ready(function() {
 	}
 	
 	// Function to check a diagonal victory
-	function hasWonDiag() {
+	/*function hasWonDiag() {
 		var startDiag = [
 			[0,0],[0,1]
 		];
@@ -141,5 +141,5 @@ jQuery(document).ready(function() {
 		}
 		count = 0;
 		return 0;
-	}
+	}*/
 })
