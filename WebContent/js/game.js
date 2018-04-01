@@ -1,5 +1,5 @@
 /**
- * 
+ * personnal note: use numRow++ for vertical win
  */
 
 jQuery(document).ready(function() {
@@ -14,15 +14,16 @@ jQuery(document).ready(function() {
 	// Main function to create and update the game
 	$("td").on("click", function() {
 		var $this = $(this);
-		// Index of the current td
-		col = $this.index();
-		// Index of the tr containing the current td
-		row = $this.closest('tr').index();
 		// Checking if the current td that has been clicked is empty
 		// If empty we draw the move of the player
-		tunr = playerTurn();
 		if ($this.text() == ""){
-			$this.text(turn).
+			// Index of the current td
+			$.post("power4", {"col":col = $this.index(),"row":row = $this.closest('tr').index()})
+			
+			// Index of the tr containing the current td
+			
+			// Setting color and size of the player's move
+			$this.text(playerTurn()).
 				css("color","red").
 				css("font-size","50px");
 		// If there is already a cross or a circle we show a popup alert
@@ -31,7 +32,15 @@ jQuery(document).ready(function() {
 		}
 		// Checking the winning condition
 		if (hasWonHor(row) == 1){
-			alert("you won")
+			alert("you wonHor")
+		}
+		
+		if (hasWonVert(col) == 1){
+			alert("you wonVert")
+		}
+		
+		if (hasWonDiag() == 1){
+			alert("you wonDiag")
 		}
 		// If it's the turn of the player, save the move in the changeStateString
 		if (turn == player){
@@ -73,8 +82,47 @@ jQuery(document).ready(function() {
 	// Function to check a horizontal victory
 	function hasWonHor(rowNum) {
 		// First loop checks for a win starting from the first cell of a row
+		for (var j = 0 ; j < 2 ; j++){
+			for (var i = 0 ; i < 5 ; i++){
+				if ($("tr").eq(rowNum).children().eq(i).text() == player){
+					count++;
+				}
+			}
+			if (count > 3){
+				return 1;
+			}
+			count = 0;
+		}
+		count = 0;
+		return 0;
+	}
+	
+	// Function to check a vertical victory
+	function hasWonVert(colNum) {
+		// First loop checks for a win starting from the first cell of a column
+		for (var j = 0 ; j < 2 ; j++){
+			for (var i = 0 ; i < 5 ; i++){
+				if ($("tr").eq(i).children().eq(colNum).text() == player){
+					count++;
+				}
+			}
+			if (count > 3){
+				return 1;
+			}
+			count = 0;
+		}
+		count = 0;
+		return 0;
+	}
+	
+	// Function to check a diagonal victory
+	function hasWonDiag() {
+		var startDiag = [
+			[0,0],[0,1]
+		];
+		// First loop checks for a win starting from the first cell of a row
 		for (var i = 0 ; i < 5 ; i++){
-			if ($("tr").eq(rowNum).children().eq(i).text() == player){
+			if ($("tr").eq(startDiag[i][0]).children().eq(startDiag[i][1]).text() == player){
 				count++;
 				if (count > 3){
 					return 1;
@@ -84,7 +132,7 @@ jQuery(document).ready(function() {
 		count = 0;
 		// Second loop checks for a win starting from the second cell of a row
 		for (var i = 1 ; i < 5 ; i++){
-			if ($("tr").eq(rowNum).children().eq(i).text() == player){
+			if ($("tr").eq(i).children().eq(0).text() == player){
 				count++;
 				if (count > 3){
 					return 1;
@@ -94,5 +142,4 @@ jQuery(document).ready(function() {
 		count = 0;
 		return 0;
 	}
-
 })
