@@ -36,7 +36,7 @@ public class PlayerDAO extends DAO<Player>{
 	@Override
 	public Player create(Player player) {
 		try {
-//			System.out.println(this.connection.isClosed());
+			//System.out.println(this.connection.isClosed());
 			String request = "INSERT INTO " + TABLE + " (name,waiting) VALUES (?,?)";
 //			System.out.println("PlayerDAO before ps");
 			PreparedStatement ps = this.connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);

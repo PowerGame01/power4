@@ -30,7 +30,7 @@ public class PositionDAO extends DAO<Position>{
                 );
             }
 		}catch (SQLException ex){
-			Logger.getLogger(PlayerDAO.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(PositionDAO.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return position;
 	}
@@ -55,7 +55,7 @@ public class PositionDAO extends DAO<Position>{
                 position = this.find(last_inserted_id);
             }
 		}catch (SQLException ex) {
-			Logger.getLogger(PlayerDAO.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(PositionDAO.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return position;
 	}
@@ -67,9 +67,26 @@ public class PositionDAO extends DAO<Position>{
 	}
 
 	@Override
-	public void delete(Position obj) {
-		// TODO Auto-generated method stub
-		
+	public void delete(Position position) {
+		try {
+            String request = "DELETE FROM " + TABLE + " WHERE id = ?";
+            PreparedStatement ps = this.connection.prepareStatement(request);
+            ps.setLong(1, position.getId());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PositionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+	}
+	
+	public void deleteAll(int playerId) {
+		try {
+            String request = "DELETE FROM " + TABLE + " WHERE player_id = ?";
+            PreparedStatement ps = this.connection.prepareStatement(request);
+            ps.setLong(1, playerId);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PositionDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
 	}
 
 }

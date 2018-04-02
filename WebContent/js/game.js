@@ -39,9 +39,13 @@ jQuery(document).ready(function() {
 			alert("you wonVert")
 		}
 		
-		/*if (hasWonDiag() == 1){
+		if (hasWonDiagRight() == 1){
 			alert("you wonDiag")
-		}*/
+		}
+		
+		if (hasWonDiagLeft() == 1){
+			alert("you wonDiag")
+		}
 		// If it's the turn of the player, save the move in the changeStateString
 		if (turn == player){
 			gameState(row, col, 1);
@@ -116,30 +120,48 @@ jQuery(document).ready(function() {
 	}
 	
 	// Function to check a diagonal victory
-	/*function hasWonDiag() {
-		var startDiag = [
-			[0,0],[0,1]
-		];
-		// First loop checks for a win starting from the first cell of a row
-		for (var i = 0 ; i < 5 ; i++){
-			if ($("tr").eq(startDiag[i][0]).children().eq(startDiag[i][1]).text() == player){
-				count++;
-				if (count > 3){
-					return 1;
+	function hasWonDiagRight() {
+		for (var j = 0 ; j < 4 ; j++){
+			var colPos = 0;
+			if (j > 1){
+				colPos = 1;
+			}	
+			var rowPos = j % 2;
+			count = 0;
+			for (var i = colPos ; i < 5 ; i++){
+				if ($("tr").eq(rowPos).children().eq(i).text() == player){
+					count++;
+					rowPos++;
 				}
 			}
-		}
-		count = 0;
-		// Second loop checks for a win starting from the second cell of a row
-		for (var i = 1 ; i < 5 ; i++){
-			if ($("tr").eq(i).children().eq(0).text() == player){
-				count++;
-				if (count > 3){
-					return 1;
-				}
+			if (count > 3){
+				return 1;
 			}
 		}
 		count = 0;
 		return 0;
-	}*/
+	}
+	
+	// Function to check a left to diagonal victory
+	function hasWonDiagLeft() {
+		for (var j = 0 ; j < 4 ; j++){
+			var colPos = 3;
+			if (j > 1){
+				colPos = 4;
+			}	
+			var rowPos = j % 2;
+			count = 0;
+			for (var i = colPos ; i >= 0 ; i--){
+				if ($("tr").eq(rowPos).children().eq(i).text() == player){
+					count++;
+					rowPos++;
+				}
+			}
+			if (count > 3){
+				return 1;
+			}
+		}
+		count = 0;
+		return 0;
+	}
 })
