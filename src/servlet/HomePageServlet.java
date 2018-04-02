@@ -21,26 +21,28 @@ public class HomePageServlet extends HttpServlet{
 
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		new MySQLConnection();
+//		new MySQLConnection();
+//		
+//		String name = req.getParameter("name");
+//		//lancer la fonction DAO qui recherche le nom de notre input.
+//		Player playerExistant = new PlayerDAO().findByNameWaiting(name);
+//	
+//		
+//		if (playerExistant !=null)
+//			// call the function waitingRoom.
+//			// waitingRoom(new playerDAO());
+//		{
+//			playerExistant.setWaiting(false); // update player
+//			new PlayerDAO().update(playerExistant); // passe l utilisateur sur la db en mode busy
+//	}
+//		else
+//		{		//waitingRoom(playerA).
+//			Player playerNew = new Player(0,name,true);
+//			new PlayerDAO().create(playerNew);
+//		}
+//		
 		
-		String name = req.getParameter("name");
-		//lancer la fonction DAO qui recherche le nom de notre input.
-		Player playerExistant = new PlayerDAO().findByNameWaiting(name);
-	
-		
-		if (playerExistant !=null)
-			// call the function waitingRoom.
-			// waitingRoom(new playerDAO());
-		{
-			playerExistant.setWaiting(false); // update player
-			new PlayerDAO().update(playerExistant); // passe l utilisateur sur la db en mode busy
-	}
-		else
-		{		//waitingRoom(playerA).
-			Player playerNew = new Player(0,name,true);
-			new PlayerDAO().create(playerNew);
-		}
-		
+		req.getRequestDispatcher("/homePage.jsp").forward(req, res);
 		
 	}
 	

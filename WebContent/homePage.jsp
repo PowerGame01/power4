@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>Welcome in Power4 Game</h1>
-	<form>
+	<form action = "waiting" method = "post">
 	
 	<table>
 	<tr>
