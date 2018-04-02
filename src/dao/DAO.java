@@ -25,4 +25,6 @@ public abstract class DAO <T>{
 	 //delete a data in DataBase
 	 
 	 public abstract void delete(T obj);
+
+
 }
