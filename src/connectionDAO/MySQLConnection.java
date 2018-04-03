@@ -69,9 +69,9 @@ public class MySQLConnection {
     	            			"        PRIMARY KEY (id )\n" + 
     	            			")ENGINE=InnoDB;");
     	            	
-    	            	connection.createStatement().execute("ALTER TABLE gridPosition ADD CONSTRAINT FK_gridPosition_id_player FOREIGN KEY (id_player) REFERENCES player(id);");
-    	            	connection.createStatement().execute("ALTER TABLE game ADD CONSTRAINT FK_game_id_player FOREIGN KEY (id_player) REFERENCES player(id);");
-    	            	connection.createStatement().execute("ALTER TABLE game ADD CONSTRAINT FK_game_id_player_1 FOREIGN KEY (id_player_1) REFERENCES player(id);");
+//    	            	connection.createStatement().execute("ALTER TABLE gridPosition ADD CONSTRAINT FK_gridPosition_id_player FOREIGN KEY (id_player) REFERENCES player(id);");
+//    	            	connection.createStatement().execute("ALTER TABLE game ADD CONSTRAINT FK_game_id_player FOREIGN KEY (id_player) REFERENCES player(id);");
+//    	            	connection.createStatement().execute("ALTER TABLE game ADD CONSTRAINT FK_game_id_player_1 FOREIGN KEY (id_player_1) REFERENCES player(id);");
     	            
     	            }catch(SQLException ex){
     	                Logger.getLogger(MySQLConnection.class.getName()).log(Level.SEVERE, null , ex);
