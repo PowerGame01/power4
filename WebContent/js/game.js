@@ -18,7 +18,7 @@ jQuery(document).ready(function() {
 		// If empty we draw the move of the player
 		if ($this.text() == ""){
 			// Index of the current td
-			$.post("power4", {"col":col = $this.index(),"row":row = $this.closest('tr').index()})
+			$.post("game", {"col":col = $this.index(),"row":row = $this.closest('tr').index()})
 			
 			// Index of the tr containing the current td
 			
@@ -90,12 +90,13 @@ jQuery(document).ready(function() {
 			for (var i = 0 ; i < 5 ; i++){
 				if ($("tr").eq(rowNum).children().eq(i).text() == player){
 					count++;
-				}
+				}else{
+					if (i != 0)
+						break;
+					}
 			}
 			if (count > 3){
 				return 1;
-			}else {
-				break;
 			}
 			count = 0;
 		}
@@ -111,12 +112,13 @@ jQuery(document).ready(function() {
 			for (var i = 0 ; i < 5 ; i++){
 				if ($("tr").eq(i).children().eq(colNum).text() == player){
 					count++;
+				}else{
+					if (i != 0)
+					break;
 				}
 			}
 			if (count > 3){
 				return 1;
-			}else{
-				break;
 			}
 		}
 		count = 0;
@@ -136,12 +138,13 @@ jQuery(document).ready(function() {
 				if ($("tr").eq(rowPos).children().eq(i).text() == player){
 					count++;
 					rowPos++;
-				}
+				}else{
+					if (i != 0)
+						break;
+					}
 			}
 			if (count > 3){
 				return 1;
-			}else{
-				break;
 			}
 		}
 		count = 0;
@@ -161,12 +164,13 @@ jQuery(document).ready(function() {
 				if ($("tr").eq(rowPos).children().eq(i).text() == player){
 					count++;
 					rowPos++;
-				}
+				}else{
+					if (i != 0)
+						break;
+					}
 			}
 			if (count > 3){
 				return 1;
-			}else{
-				break;
 			}
 		}
 		count = 0;
