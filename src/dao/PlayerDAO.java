@@ -14,6 +14,7 @@ import beans.Player;
 public class PlayerDAO extends DAO<Player>{
 	/** create final variable TABLE player **/
 	private final String TABLE = "player";
+	
 	@Override
 	/** implementation of find method for PlayerDAO class **/
 	public Player find(Integer id) {
@@ -50,9 +51,9 @@ public class PlayerDAO extends DAO<Player>{
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
             int last_inserted_id;
-            if (rs.first()) { // Si on a des id créés on lit le premier
+            if (rs.first()) { //if we have id created, we read the first
                 last_inserted_id = rs.getInt(1);
-                // On récupère l'enregistrement créé
+              //We recover the id created
                 player = this.find(last_inserted_id);
             }
 		}catch (SQLException ex) {
