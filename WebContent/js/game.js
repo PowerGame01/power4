@@ -90,6 +90,8 @@ jQuery(document).ready(function() {
 			for (var i = 0 ; i < 5 ; i++){
 				if ($("tr").eq(rowNum).children().eq(i).text() == player){
 					count++;
+				}else {
+					break;
 				}
 			}
 			if (count > 3){
@@ -109,6 +111,8 @@ jQuery(document).ready(function() {
 			for (var i = 0 ; i < 5 ; i++){
 				if ($("tr").eq(i).children().eq(colNum).text() == player){
 					count++;
+				}else{
+					break;
 				}
 			}
 			if (count > 3){
@@ -132,6 +136,8 @@ jQuery(document).ready(function() {
 				if ($("tr").eq(rowPos).children().eq(i).text() == player){
 					count++;
 					rowPos++;
+				}else{
+					break;
 				}
 			}
 			if (count > 3){
@@ -155,6 +161,8 @@ jQuery(document).ready(function() {
 				if ($("tr").eq(rowPos).children().eq(i).text() == player){
 					count++;
 					rowPos++;
+				}else{
+					break;
 				}
 			}
 			if (count > 3){

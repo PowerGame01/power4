@@ -10,6 +10,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class MySQLConnection {
     // Using properties file for Connection
     /*
@@ -28,13 +29,14 @@ public class MySQLConnection {
     Connection Object
     */
     private static Connection connection;
-
+    //Constructor of MySQLConnection
     public MySQLConnection() {}
-    	
+    	//create a connection to the database
     	public static Connection getInstance() {
     	        try {
     	        	System.out.println("MysqlConn in");
-    	            FileReader in = new FileReader("D:\\Eclipse-save\\Power4.zip_expanded\\Power4\\WebContent\\WEB-INF\\properties\\configDB.prop");
+    	        	//Path of properties file
+    	            FileReader in = new FileReader("/home/stag/git/power4/WebContent/WEB-INF/properties/configDB.prop");
     	            Properties configProp = new Properties();
     	            configProp.load(in);
     	            HOST = configProp.getProperty("HOST");
@@ -49,8 +51,10 @@ public class MySQLConnection {
     	        }
     	        if (connection == null) {
     	            try{
+    	            	//create a connection to the database
     	            	connection = DriverManager.getConnection("jdbc:mysql://"+HOST+
     	            			":"+PORT+"/"+DATABASE + "?autoReconnect=true&useSSL=false", USER, PASSWORD);
+    	            	//create database tables if not exists
     	            	connection.createStatement().execute("CREATE TABLE IF NOT EXISTS player(id int (11) Auto_increment  NOT NULL ,\n" + 
     	            			"        name    Varchar (50) NOT NULL ,\n" + 
     	            			"        waiting Bool NOT NULL ,\n" + 
@@ -77,6 +81,7 @@ public class MySQLConnection {
     	                Logger.getLogger(MySQLConnection.class.getName()).log(Level.SEVERE, null , ex);
     	            }
     	        }
+    	    //return a connection    
     	    return connection;
     	}
     
