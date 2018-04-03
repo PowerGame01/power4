@@ -1,5 +1,7 @@
 package beans;
 
+//Creating a Player object
+
 public class Player {
 	
 	//Setting variables
@@ -43,10 +45,4 @@ public class Player {
 	public void setWaiting(boolean waiting) {
 		this.waiting = waiting;
 	}
-	
-	//Override ToString method
-	@Override
-    public String toString() {
-        return "Player{" + "id=" + id + ", name=" + name + ", Waiting=" + waiting + '}';
-    }
 }
