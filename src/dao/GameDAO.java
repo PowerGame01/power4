@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import beans.Game;
+import beans.Player;
 
 public class GameDAO extends DAO<Game>{
 private final String TABLE = "game";
@@ -42,7 +43,7 @@ private final String TABLE = "game";
 			PreparedStatement ps = this.connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
 			System.out.println(game.toString());
 			ps.setInt(1, game.getId_player());
-			ps.setInt(2, game.getId_player());
+			ps.setInt(2, game.getId_player_1());
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
             int last_inserted_id;
@@ -73,5 +74,27 @@ private final String TABLE = "game";
             Logger.getLogger(GameDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 	}
-
+	
+	public Game gameExist (int player_id) {
+		Game game = null;
+		try {
+			String request = "SELECT * FROM " + TABLE + " WHERE player_id = ?";
+			PreparedStatement ps = this.connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, player_id);
+			ResultSet result = ps.executeQuery();
+			if (result.first()) {
+                game = new Game(
+                        result.getInt("id"),
+                        result.getInt("player_id"),
+                        result.getInt("player_id_1")
+                );
+            }
+			this.update(game);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return game;	
+	}
+	
 }
