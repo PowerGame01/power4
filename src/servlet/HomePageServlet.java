@@ -22,6 +22,6 @@ public class HomePageServlet extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse res)
 	throws ServletException, IOException {
 		//forward servlet to the homePage.jsp
-		req.getRequestDispatcher("/homePage.jsp").forward(req, res);		
+		req.getRequestDispatcher("/WEB-INF/views/homePage.jsp").forward(req, res);		
 	}
 }

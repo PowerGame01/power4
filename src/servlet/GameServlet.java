@@ -49,7 +49,7 @@ public class GameServlet extends HttpServlet{
 			e.printStackTrace();
 		}
 		
-		req.getRequestDispatcher("/game.jsp").forward(req, res);
+		req.getRequestDispatcher("/WEB-INF/views/game.jsp").forward(req, res);
 	}
 	
 }

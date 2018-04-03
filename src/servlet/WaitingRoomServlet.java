@@ -62,7 +62,7 @@ public class WaitingRoomServlet extends HttpServlet {
 		
 			System.out.println("Coucou");
 		
-			req.getRequestDispatcher("/waitingRoom.jsp").forward(req, res);
+			req.getRequestDispatcher("/WEB-INF/views/waitingRoom.jsp").forward(req, res);
 		}
 		
 
