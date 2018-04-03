@@ -12,6 +12,7 @@ import beans.Game;
 public class GameDAO extends DAO<Game>{
 private final String TABLE = "game";
 	@Override
+	//implementation of find method for GameDAO class
 	public Game find(Integer id) {
 		Game game = null;
 		try {
@@ -29,15 +30,15 @@ private final String TABLE = "game";
 		}catch (Exception ex){
 			
 		}
+		//return a tic-tac-toe
 		return game;
 	}
 
 	@Override
+	//implementation of create method for GameDAO class
 	public Game create(Game game) {
 		try {
-			//System.out.println(this.connection.isClosed());
 			String request = "INSERT INTO " + TABLE + " (id_player,id_player_1) VALUES (?,?)";
-//			System.out.println("PlayerDAO before ps");
 			PreparedStatement ps = this.connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
 			System.out.println(game.toString());
 			ps.setInt(1, game.getId_player());
@@ -45,9 +46,9 @@ private final String TABLE = "game";
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
             int last_inserted_id;
-            if (rs.first()) { // Si on a des id créés on lit le premier
+            if (rs.first()) { //if we have id created, we read the first
                 last_inserted_id = rs.getInt(1);
-                // On récupère l'enregistrement créé
+                //We recover the id created
                 game = this.find(last_inserted_id);
             }
 		}catch (SQLException ex) {
@@ -58,7 +59,6 @@ private final String TABLE = "game";
 
 	@Override
 	public Game update(Game obj) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
