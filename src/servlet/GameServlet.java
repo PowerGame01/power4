@@ -25,7 +25,7 @@ public class GameServlet extends HttpServlet{
 		
 		new MySQLConnection();
 		
-		Player playerNew = new Player(0,"Paul",true);
+		/*Player playerNew = new Player(0,"Paul",true);
 		int col = Integer.parseInt(req.getParameter("col"));
 		System.out.println("col : "+col);
 		int row = Integer.parseInt(req.getParameter("row"));
@@ -40,7 +40,7 @@ public class GameServlet extends HttpServlet{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		req.getRequestDispatcher("/game.jsp").forward(req, res);
 	}
