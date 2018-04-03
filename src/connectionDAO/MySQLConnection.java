@@ -29,12 +29,14 @@ public class MySQLConnection {
     */
     private static Connection connection;
 
+    //MySQLConnection constructor
     public MySQLConnection() {}
-    	
+    	//Creating a connection instance
     	public static Connection getInstance() {
     	        try {
+    	        	//reading properties file
     	        	System.out.println("MysqlConn in");
-    	            FileReader in = new FileReader("/home/flavien/git/power4/WebContent/WEB-INF/properties/configDB.prop");
+    	            FileReader in = new FileReader("/home/stag/git/power4/WebContent/WEB-INF/properties/configDB.prop");
     	            Properties configProp = new Properties();
     	            configProp.load(in);
     	            HOST = configProp.getProperty("HOST");
@@ -51,6 +53,7 @@ public class MySQLConnection {
     	            try{
     	            	connection = DriverManager.getConnection("jdbc:mysql://"+HOST+
     	            			":"+PORT+"/"+DATABASE + "?autoReconnect=true&useSSL=false", USER, PASSWORD);
+    	            	//tables creation if not exists
     	            	connection.createStatement().execute("CREATE TABLE IF NOT EXISTS player(id int (11) Auto_increment  NOT NULL ,\n" + 
     	            			"        name    Varchar (50) NOT NULL ,\n" + 
     	            			"        waiting Bool NOT NULL ,\n" + 
@@ -77,6 +80,7 @@ public class MySQLConnection {
     	                Logger.getLogger(MySQLConnection.class.getName()).log(Level.SEVERE, null , ex);
     	            }
     	        }
+    	        //return connection
     	    return connection;
     	}
     

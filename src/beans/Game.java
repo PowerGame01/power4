@@ -1,5 +1,7 @@
 package beans;
 
+//Creating a player object
+
 public class Game {
 	
 	//Setting Variables
@@ -30,10 +32,14 @@ public class Game {
 	public void setId_player(Integer id_player) {
 		this.id_player = id_player;
 	}
+
+	public Integer getId_player_1() {
+		return id_player_1;
+	}
+
+	public void setId_player_1(Integer id_player_1) {
+		this.id_player_1 = id_player_1;
+	}
 	
-	//override ToString method
-	@Override
-    public String toString() {
-        return "Game{" + "id=" + id + ", id_player=" + id_player + ", id_player_1=" + id_player_1 + '}';
-    }
+	
 }
