@@ -47,7 +47,7 @@ public class GameServlet extends HttpServlet{
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		
 		req.getRequestDispatcher("/game.jsp").forward(req, res);
 	}
