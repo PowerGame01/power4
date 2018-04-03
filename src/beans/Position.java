@@ -1,13 +1,14 @@
 package beans;
 
+//Create a position object
+
 public class Position {
 	
 	int id;
 	int row;
 	int col;
 	int player;
-	
-	
+		
 	public Position(int id, int row, int col, int player) {
 		super();
 		this.id = id;
@@ -54,6 +55,4 @@ public class Position {
 	public void setPlayer(int player) {
 		this.player = player;
 	}
-	
-	
 }

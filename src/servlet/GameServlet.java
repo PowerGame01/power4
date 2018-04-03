@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.Player;
 import beans.Position;
@@ -23,19 +24,25 @@ public class GameServlet extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		
-		new MySQLConnection();
+		HttpSession session = req.getSession();
 		
-		/*Player playerNew = new Player(0,"Paul",true);
-		int col = Integer.parseInt(req.getParameter("col"));
-		System.out.println("col : "+col);
-		int row = Integer.parseInt(req.getParameter("row"));
-		System.out.println("row : "+row);
+
+		
+//		new MySQLConnection();
+		System.out.println("player in game " +session.getAttribute("player"));
+		System.out.println("opponent in game " +session.getAttribute("opponent"));
+//		Player playerNew = new Player(0,"Paul",true);
+//		int col = Integer.parseInt(req.getParameter("col"));
+//		System.out.println("col : "+col);
+//		int row = Integer.parseInt(req.getParameter("row"));
+//		System.out.println("row : "+row);
+
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			DAO<Position> positionDAO = DAOFactory.getPositionDAO();
-			Position test = new Position(0,row,col,2);
-			test = positionDAO.create(test);
+//			DAO<Position> positionDAO = DAOFactory.getPositionDAO();
+//			Position test = new Position(0,row,col,2);
+//			test = positionDAO.create(test);
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
