@@ -36,7 +36,7 @@ public class MySQLConnection {
     	        try {
     	        	System.out.println("MysqlConn in");
     	        	//Path of properties file
-    	            FileReader in = new FileReader("/home/stag/git/power4/WebContent/WEB-INF/properties/configDB.prop");
+    	            FileReader in = new FileReader("D:\\Eclipse-save\\Power4.zip_expanded\\Power4\\WebContent\\WEB-INF\\properties\\configDB.prop");
     	            Properties configProp = new Properties();
     	            configProp.load(in);
     	            HOST = configProp.getProperty("HOST");
