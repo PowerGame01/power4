@@ -41,11 +41,8 @@ public class PlayerDAO extends DAO<Player>{
 	/** implementation of create method for PlayerDAO class **/
 	public Player create(Player player) {
 		try {
-			//System.out.println(this.connection.isClosed());
 			String request = "INSERT INTO " + TABLE + " (name,waiting) VALUES (?,?)";
-//			System.out.println("PlayerDAO before ps");
 			PreparedStatement ps = this.connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
-			System.out.println(player.toString());
 			ps.setString(1, player.getName());
 			ps.setBoolean(2, player.isWaiting());
 			ps.executeUpdate();

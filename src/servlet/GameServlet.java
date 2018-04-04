@@ -26,14 +26,13 @@ public class GameServlet extends HttpServlet{
 			throws ServletException, IOException {
 		
 		HttpSession session = req.getSession();
-		
+		/*Debug
 		System.out.println("player in game " +session.getAttribute("player"));
-		System.out.println("opponent in game " +session.getAttribute("opponent"));
+		System.out.println("opponent in game " +session.getAttribute("opponent"));*/
 		if (req.getParameter("col") != null && req.getParameter("row") != null) {
 			int col = Integer.parseInt(req.getParameter("col"));
-			System.out.println("col : "+col);
 			int row = Integer.parseInt(req.getParameter("row"));
-			System.out.println("row : "+row);	
+			
 			
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
@@ -42,7 +41,7 @@ public class GameServlet extends HttpServlet{
 					test = positionDAO.create(test);
 				
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			
@@ -51,8 +50,6 @@ public class GameServlet extends HttpServlet{
 				testGame = gameDAO.create(testGame);
 		}
 		// Fin du if général
-		
-		
 		req.getRequestDispatcher("/WEB-INF/views/game.jsp").forward(req, res);
 	}
 	

@@ -41,14 +41,8 @@ public class WaitingRoomServlet extends HttpServlet {
 		}
 		if(session.getAttribute("opponent") == null) {
 			try {
-				System.out.println("opponent entry");
 				opponent = ((PlayerDAO) playerDAO).findOpponent(((Player)session.getAttribute("player")).getName());
-				System.out.println(opponent.toString());
 				session.setAttribute("opponent", opponent);
-				System.out.println(opponent);
-				System.out.println("session attribut opponent = " + session.getAttribute("opponent"));
-				
-				System.out.println("Coucou t'es dans le if");
 //				req.setAttribute("player", session.getAttribute("player"));
 //				req.setAttribute("opponent", session.getAttribute("opponent"));
 				req.getRequestDispatcher("/game").forward(req, res);	

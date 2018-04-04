@@ -44,7 +44,6 @@ public class PositionDAO extends DAO<Position>{
 		try {
 			String request = "INSERT INTO " + TABLE + " (row,col,id_player) VALUES (?,?,?)";
 			PreparedStatement ps = this.connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
-			System.out.println(position.toString());
 			ps.setInt(1, position.getRow());
 			ps.setInt(2, position.getCol());
 			ps.setInt(3, position.getPlayer());
@@ -64,7 +63,7 @@ public class PositionDAO extends DAO<Position>{
 
 	@Override
 	public Position update(Position obj) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

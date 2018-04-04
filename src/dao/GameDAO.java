@@ -43,7 +43,6 @@ public class GameDAO extends DAO<Game>{
 		try {
 			String request = "INSERT INTO " + TABLE + " (id_player,id_player_1) VALUES (?,?)";
 			PreparedStatement ps = this.connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
-			System.out.println(game.toString());
 			ps.setInt(1, game.getId_player());
 			ps.setInt(2, game.getId_player());
 			ps.executeUpdate();

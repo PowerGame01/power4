@@ -34,7 +34,6 @@ public class MySQLConnection {
     	//create a connection to the database
     	public static Connection getInstance() {
     	        try {
-    	        	System.out.println("MysqlConn in");
     	        	//Path of properties file
     	            FileReader in = new FileReader("/home/stag/git/power4/WebContent/WEB-INF/properties/configDB.prop");
     	            Properties configProp = new Properties();
@@ -75,8 +74,6 @@ public class MySQLConnection {
     	            			+ "\n" + "CONSTRAINT FK_game_id_player FOREIGN KEY (id_player) REFERENCES player(id),"
     	            					+ "CONSTRAINT FK_game_id_player_1 FOREIGN KEY (id_player_1) REFERENCES player(id)"
     	            			+")ENGINE=InnoDB;");
-    	            	//Foreign Key which links three tables
-    	            
     	            }catch(SQLException ex){
     	                Logger.getLogger(MySQLConnection.class.getName()).log(Level.SEVERE, null , ex);
     	            }
