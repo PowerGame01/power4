@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="css/bootstrap.css">
 <title>Power4</title>
 </head>
 <body>
 	<h1>Welcome in Power4 Game</h1>
-	<form action = "waiting" method = "post">
+	<form action = "waiting" method = "post"  class="form-horizontal">
 	
 	<table>
 	<tr>
