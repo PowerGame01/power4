@@ -35,9 +35,9 @@ public class MySQLConnection {
     	public static Connection getInstance() {
     	        try {
     	        	//Path of properties file
-    	            FileReader in = new FileReader("D:\\Eclipse-save\\Power4.zip_expanded\\Power4\\WebContent\\WEB-INF\\properties\\configDB.prop");
+    	        	
     	            Properties configProp = new Properties();
-    	            configProp.load(in);
+    	            configProp.load(MySQLConnection.class.getResourceAsStream("/configDB.prop"));
     	            host = configProp.getProperty("HOST");
     	            port = configProp.getProperty("PORT");
     	            database = configProp.getProperty("DATABASE");

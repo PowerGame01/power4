@@ -6,6 +6,7 @@ jQuery(document).ready(function() {
 	
 	var col;
 	var row;
+	var turn = "X";
 	var player = "X";
 	var count = 0;
 	
@@ -44,11 +45,6 @@ jQuery(document).ready(function() {
 		if (hasWonDiagLeft() == 1){
 			$("#victory").text("Victoire");
 		}
-		// If it's the turn of the player, save the move in the changeStateString
-		if (turn == player){
-			gameState(row, col, 1);
-		}
-		console.log(gameStateString);
 		
 	})
 
