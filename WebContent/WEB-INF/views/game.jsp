@@ -10,6 +10,7 @@
 <title>Power4</title>
 </head>
 <body>
+	<h1>Power4</h1>
 	<table width="500" height="500">
 		<tr>
 			<td></td>
