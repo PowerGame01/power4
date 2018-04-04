@@ -9,10 +9,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import beans.Player;
 
+/** Using generic DAO for create PlayerDAO **/
+
 public class PlayerDAO extends DAO<Player>{
-	
+	/** create final variable TABLE player **/
 	private final String TABLE = "player";
+	
 	@Override
+	/** implementation of find method for PlayerDAO class **/
 	public Player find(Integer id) {
 		Player player = null;
 		try {
@@ -34,6 +38,7 @@ public class PlayerDAO extends DAO<Player>{
 	}
 
 	@Override
+	/** implementation of create method for PlayerDAO class **/
 	public Player create(Player player) {
 		try {
 			//System.out.println(this.connection.isClosed());
@@ -46,9 +51,9 @@ public class PlayerDAO extends DAO<Player>{
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
             int last_inserted_id;
-            if (rs.first()) { // Si on a des id créés on lit le premier
+            if (rs.first()) { //if we have id created, we read the first
                 last_inserted_id = rs.getInt(1);
-                // On récupère l'enregistrement créé
+              //We recover the id created
                 player = this.find(last_inserted_id);
             }
 		}catch (SQLException ex) {
@@ -61,6 +66,7 @@ public class PlayerDAO extends DAO<Player>{
 	}
 
 	@Override
+	/** implementation of update method for PlayerDAO class **/
 	public Player update(Player player) {
 		try {
 			String request = "UPDATE " + TABLE + " SET name = ?, waiting = ? WHERE id = ?";
@@ -76,6 +82,7 @@ public class PlayerDAO extends DAO<Player>{
 	}
 
 	@Override
+	/** implementation of delete method for PlayerDAO class **/
 	public void delete(Player player) {
 		try {
             String request = "DELETE FROM " + TABLE + " WHERE id = ?";
@@ -87,6 +94,7 @@ public class PlayerDAO extends DAO<Player>{
         }
 	}
 	
+	/** definition and implementation of findOpponent method **/
 	public Player findOpponent(String name) {
 		Player player = null;
 		try {
@@ -94,10 +102,6 @@ public class PlayerDAO extends DAO<Player>{
 			PreparedStatement ps = this.connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, name);
 			ResultSet result = ps.executeQuery();
-//			System.out.println(request);
-//			Object req = request;
-//			player = (Player) req;
-//			System.out.println(player.toString());
 			if (result.first()) {
                 player = new Player(
                         result.getInt("id"),
@@ -111,6 +115,7 @@ public class PlayerDAO extends DAO<Player>{
 		return player;
 	}
 	
+	/** definition and implementation of findByName method **/
 	public Player findByName(String name) {
 		Player player = null;
 		try {

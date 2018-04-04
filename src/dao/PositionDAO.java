@@ -9,11 +9,14 @@ import java.util.logging.Logger;
 
 import beans.Position;
 
+/** Using generic DAO for create PositionDAO **/
 public class PositionDAO extends DAO<Position>{
 
+	/** create final variable TABLE positions **/
 	private final String TABLE = "positions";
 	
 	@Override
+	/** implementation of find method for PositionDAO class **/
 	public Position find(Integer id) {
 		Position position = null;
 		try {
@@ -36,11 +39,10 @@ public class PositionDAO extends DAO<Position>{
 	}
 
 	@Override
+	/** implementation of create method for PositionDAO class **/
 	public Position create(Position position) {
 		try {
-			//System.out.println(this.connection.isClosed());
 			String request = "INSERT INTO " + TABLE + " (row,col,id_player) VALUES (?,?,?)";
-//			System.out.println("PlayerDAO before ps");
 			PreparedStatement ps = this.connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
 			System.out.println(position.toString());
 			ps.setInt(1, position.getRow());
@@ -49,9 +51,9 @@ public class PositionDAO extends DAO<Position>{
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
             int last_inserted_id;
-            if (rs.first()) { // Si on a des id créés on lit le premier
+            if (rs.first()) { //if we have id created, we read the first
                 last_inserted_id = rs.getInt(1);
-                // On récupère l'enregistrement créé
+              //We recover the id created
                 position = this.find(last_inserted_id);
             }
 		}catch (SQLException ex) {
@@ -67,6 +69,7 @@ public class PositionDAO extends DAO<Position>{
 	}
 
 	@Override
+	/** implementation of delete method for PositionDAO class (for delete one element)**/
 	public void delete(Position position) {
 		try {
             String request = "DELETE FROM " + TABLE + " WHERE id = ?";
@@ -78,6 +81,7 @@ public class PositionDAO extends DAO<Position>{
         }
 	}
 	
+	/** Definition and implementation of deleteAll method for PositionDAO class **/
 	public void deleteAll(int playerId) {
 		try {
             String request = "DELETE FROM " + TABLE + " WHERE player_id = ?";

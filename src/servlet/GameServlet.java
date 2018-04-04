@@ -53,7 +53,7 @@ public class GameServlet extends HttpServlet{
 		// Fin du if général
 		
 		
-		req.getRequestDispatcher("/game.jsp").forward(req, res);
+		req.getRequestDispatcher("/WEB-INF/views/game.jsp").forward(req, res);
 	}
 	
 }

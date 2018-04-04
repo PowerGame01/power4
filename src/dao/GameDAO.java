@@ -8,12 +8,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import beans.Game;
-import beans.Player;
 
+/** Using generic DAO for create GameDAO **/
 public class GameDAO extends DAO<Game>{
-private final String TABLE = "game";
+	
+	/** create final variable TABLE game **/
+	private final String TABLE = "game";
 	@Override
-	//implementation of find method for GameDAO class
+	/** implementation of find method for GameDAO class **/
 	public Game find(Integer id) {
 		Game game = null;
 		try {
@@ -31,19 +33,19 @@ private final String TABLE = "game";
 		}catch (Exception ex){
 			
 		}
-		//return a tic-tac-toe
+		/** return a tic-tac-toe **/
 		return game;
 	}
 
 	@Override
-	//implementation of create method for GameDAO class
+	/** implementation of create method for GameDAO class **/
 	public Game create(Game game) {
 		try {
 			String request = "INSERT INTO " + TABLE + " (id_player,id_player_1) VALUES (?,?)";
 			PreparedStatement ps = this.connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
 			System.out.println(game.toString());
 			ps.setInt(1, game.getId_player());
-			ps.setInt(2, game.getId_player_1());
+			ps.setInt(2, game.getId_player());
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
             int last_inserted_id;
@@ -62,7 +64,7 @@ private final String TABLE = "game";
 	public Game update(Game obj) {
 		return null;
 	}
-
+	/** implementation of delete method for GameDAO class **/
 	@Override
 	public void delete(Game game) {
 		try {
@@ -74,27 +76,6 @@ private final String TABLE = "game";
             Logger.getLogger(GameDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 	}
-	
-	public Game gameExist (int player_id) {
-		Game game = null;
-		try {
-			String request = "SELECT * FROM " + TABLE + " WHERE player_id = ?";
-			PreparedStatement ps = this.connection.prepareStatement(request, Statement.RETURN_GENERATED_KEYS);
-			ps.setInt(1, player_id);
-			ResultSet result = ps.executeQuery();
-			if (result.first()) {
-                game = new Game(
-                        result.getInt("id"),
-                        result.getInt("player_id"),
-                        result.getInt("player_id_1")
-                );
-            }
-			this.update(game);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return game;	
-	}
-	
+
 }
+
