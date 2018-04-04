@@ -10,14 +10,14 @@ public class Position {
 	private Integer player;
 	
 	//Constructor with parameters
-	public Position(int id, int row, int col, int player) {
+	public Position(Integer id, int row, int col, Integer player) {
 		this.id = id;
 		this.row = row;
 		this.col = col;
 		this.player = player;
 	}
 
-	public Position(int row, int col, int player) {
+	public Position(int row, int col, Integer player) {
 		this.row = row;
 		this.col = col;
 		this.player = player;
@@ -28,7 +28,7 @@ public class Position {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -52,7 +52,7 @@ public class Position {
 		return player;
 	}
 
-	public void setPlayer(int player) {
+	public void setPlayer(Integer player) {
 		this.player = player;
 	}
 
