@@ -27,36 +27,58 @@ public class WaitingRoomServlet extends HttpServlet {
 		Player opponent = null;
 		DAO<Player> playerDAO = null;
 		
-		if(session.getAttribute("player") == null) {
-			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				playerDAO = DAOFactory.getPlayerDAO();
-				player = new Player(req.getParameter("name"), true);
-				player = playerDAO.create(player);
-				session.setAttribute("player", player);
-				System.out.println("session attribut player = " + session.getAttribute("player"));
-			} catch (Exception e) {
-					e.printStackTrace();
-			}
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			playerDAO = DAOFactory.getPlayerDAO();
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		if(session.getAttribute("opponent") == null) {
-			try {
-				opponent = ((PlayerDAO) playerDAO).findOpponent(((Player)session.getAttribute("player")).getName());
-				session.setAttribute("opponent", opponent);
-//				req.setAttribute("player", session.getAttribute("player"));
-//				req.setAttribute("opponent", session.getAttribute("opponent"));
-				req.getRequestDispatcher("/game").forward(req, res);	
+		
+//		Player test = new Player("jhon",false);
+//		System.out.println("test = " + test.toString());
+//		test = playerDAO.create(test);
+//		System.out.println("test = " + test);
+		
+//		System.out.println("opponent = " + session.getAttribute("opponent"));
+//		System.out.println("player = " + session.getAttribute("player"));
+		if(session.getAttribute("opponent") != null && session.getAttribute("player") != null) {
+			req.setAttribute("player", session.getAttribute("player"));
+			req.setAttribute("opponent", session.getAttribute("opponent"));
+			req.getRequestDispatcher("/game").forward(req, res);
+		}else {
+			if(session.getAttribute("player") != null) {
+//				System.out.println("nom du joueur = " + player.getName());
+				opponent =  ((PlayerDAO) playerDAO).findOpponent(((Player) session.getAttribute("player")).getName());
+				session.setAttribute("opponent", ((Player)opponent));
 				
-			}catch (NullPointerException e) {
-				e.getStackTrace();
-			}catch (IllegalStateException e) {
-				e.getStackTrace();
+//				System.out.println("nom de l'adversaire = " + opponent.getName());
+				System.out.println(((PlayerDAO) playerDAO).findOpponent(session.getAttribute("player").toString()));
+				if(session.getAttribute("opponent") == null) {
+					req.setAttribute("opponent", session.getAttribute("opponent"));
+					req.getRequestDispatcher("/waitingRoom.jsp").forward(req, res);
+				}else req.getRequestDispatcher("/game").forward(req, res);
+			}else {
+				try {
+//					Class.forName("com.mysql.jdbc.Driver");
+//					playerDAO = DAOFactory.getPlayerDAO();
+					System.out.println("Coucou du try player");
+					player = new Player(req.getParameter("name"), true);
+					player = playerDAO.create(player);
+					session.setAttribute("player", ((Player)player));
+					req.setAttribute("player", session.getAttribute("player"));
+					session.setAttribute("playerName", player.getName());
+					System.out.println("session attribut player = " + session.getAttribute("player").toString());
+					System.out.println("test" + ((PlayerDAO) playerDAO).findOpponent(session.getAttribute("playerName").toString()));
+				} catch (Exception e) {
+						e.printStackTrace();
+						
+				}
+				req.getRequestDispatcher("/WEB-INF/views/waitingRoom.jsp").forward(req, res);
 			}
-		} else {	
-		
-			req.getRequestDispatcher("/WEB-INF/views/waitingRoom.jsp").forward(req, res);
+			System.out.println("opponent = " + session.getAttribute("opponent"));
+			System.out.println("player = " + session.getAttribute("player"));
 		}
-		
-
+			
 	}
 }
