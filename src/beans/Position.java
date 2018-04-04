@@ -4,13 +4,13 @@ package beans;
 
 public class Position {
 	
-	int id;
-	int row;
-	int col;
-	int player;
-		
+	private Integer id;
+	private int row;
+	private int col;
+	private Integer player;
+	
+	//Constructor with parameters
 	public Position(int id, int row, int col, int player) {
-		super();
 		this.id = id;
 		this.row = row;
 		this.col = col;
@@ -18,12 +18,12 @@ public class Position {
 	}
 
 	public Position(int row, int col, int player) {
-		super();
 		this.row = row;
 		this.col = col;
 		this.player = player;
 	}
 
+	//Getters and Setters
 	public int getId() {
 		return id;
 	}
@@ -55,4 +55,11 @@ public class Position {
 	public void setPlayer(int player) {
 		this.player = player;
 	}
+
+	@Override
+	public String toString() {
+		return "Position [id=" + id + ", row=" + row + ", col=" + col + ", player=" + player + "]";
+	}
+	
+	
 }
