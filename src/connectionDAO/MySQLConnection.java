@@ -16,15 +16,15 @@ public class MySQLConnection {
     /*
     connection URL
     */
-    private static String HOST;
-    private static String PORT;
-    private static String DATABASE;
+    private static String host;
+    private static String port;
+    private static String database;
   
     /*
     Login-Password
     */
-    private static String USER;
-    private static String PASSWORD;  
+    private static String user;
+    private static String password;  
     /*
     Connection Object
     */
@@ -38,11 +38,11 @@ public class MySQLConnection {
     	            FileReader in = new FileReader("D:\\Eclipse-save\\Power4.zip_expanded\\Power4\\WebContent\\WEB-INF\\properties\\configDB.prop");
     	            Properties configProp = new Properties();
     	            configProp.load(in);
-    	            HOST = configProp.getProperty("HOST");
-    	            PORT = configProp.getProperty("PORT");
-    	            DATABASE = configProp.getProperty("DATABASE");
-    	            USER = configProp.getProperty("USER");
-    	            PASSWORD = configProp.getProperty("PASSWORD");
+    	            host = configProp.getProperty("HOST");
+    	            port = configProp.getProperty("PORT");
+    	            database = configProp.getProperty("DATABASE");
+    	            user = configProp.getProperty("USER");
+    	            password = configProp.getProperty("PASSWORD");
     	        } catch (FileNotFoundException ex) {
     	            Logger.getLogger(MySQLConnection.class.getName()).log(Level.SEVERE, null, ex);
     	        } catch (IOException ex) {
@@ -51,8 +51,8 @@ public class MySQLConnection {
     	        if (connection == null) {
     	            try{
     	            	//create a connection to the database
-    	            	connection = DriverManager.getConnection("jdbc:mysql://"+HOST+
-    	            			":"+PORT+"/"+DATABASE + "?autoReconnect=true&useSSL=false", USER, PASSWORD);
+    	            	connection = DriverManager.getConnection("jdbc:mysql://"+host+
+    	            			":"+port+"/"+database + "?autoReconnect=true&useSSL=false", user, password);
     	            	//create database tables if not exists
     	            	connection.createStatement().execute("CREATE TABLE IF NOT EXISTS player(id int (11) Auto_increment  NOT NULL ,\n" + 
     	            			"        name    Varchar (50) NOT NULL ,\n" + 
