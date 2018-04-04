@@ -1,6 +1,6 @@
 package beans;
 
-//Creating a player object
+//Creating a game object
 
 public class Game {
 	
@@ -39,6 +39,11 @@ public class Game {
 
 	public void setId_player_1(Integer id_player_1) {
 		this.id_player_1 = id_player_1;
+	}
+
+	@Override
+	public String toString() {
+		return "Game [id=" + id + ", id_player=" + id_player + ", id_player_1=" + id_player_1 + "]";
 	}
 	
 	

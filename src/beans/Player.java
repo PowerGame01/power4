@@ -45,4 +45,12 @@ public class Player {
 	public void setWaiting(boolean waiting) {
 		this.waiting = waiting;
 	}
+
+	//Override toString method 
+	@Override
+	public String toString() {
+		return "Player [id=" + id + ", name=" + name + ", waiting=" + waiting + "]";
+	}
+	
+	
 }

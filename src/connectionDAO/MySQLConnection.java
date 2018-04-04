@@ -65,17 +65,17 @@ public class MySQLConnection {
     	            			"        row       Varchar (2) NOT NULL ,\n" + 
     	            			"        col       Varchar (2) NOT NULL ,\n" + 
     	            			"        id_player Int NOT NULL ,\n" + 
-    	            			"        PRIMARY KEY (id )\n" + 
+    	            			"        PRIMARY KEY (id ),\n"
+    	            			+ "CONSTRAINT FK_gridPosition_id_player FOREIGN KEY (id_player) REFERENCES player(id)"+
     	            			")ENGINE=InnoDB;");
     	            	connection.createStatement().execute("CREATE TABLE IF NOT EXISTS game(id int (11) Auto_increment  NOT NULL ,\n" + 
     	            			"        id_player   Int NOT NULL ,\n" + 
     	            			"        id_player_1 Int NOT NULL ,\n" + 
-    	            			"        PRIMARY KEY (id )\n" + 
-    	            			")ENGINE=InnoDB;");
-    	            	
-    	            	connection.createStatement().execute("ALTER TABLE gridPosition ADD CONSTRAINT FK_gridPosition_id_player FOREIGN KEY (id_player) REFERENCES player(id);");
-    	            	connection.createStatement().execute("ALTER TABLE game ADD CONSTRAINT FK_game_id_player FOREIGN KEY (id_player) REFERENCES player(id);");
-    	            	connection.createStatement().execute("ALTER TABLE game ADD CONSTRAINT FK_game_id_player_1 FOREIGN KEY (id_player_1) REFERENCES player(id);");
+    	            			"        PRIMARY KEY (id ),"
+    	            			+ "\n" + "CONSTRAINT FK_game_id_player FOREIGN KEY (id_player) REFERENCES player(id),"
+    	            					+ "CONSTRAINT FK_game_id_player_1 FOREIGN KEY (id_player_1) REFERENCES player(id)"
+    	            			+")ENGINE=InnoDB;");
+    	            	//Foreign Key which links three tables
     	            
     	            }catch(SQLException ex){
     	                Logger.getLogger(MySQLConnection.class.getName()).log(Level.SEVERE, null , ex);

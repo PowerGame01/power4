@@ -12,8 +12,8 @@ import beans.Position;
 /** Using generic DAO for create PositionDAO **/
 public class PositionDAO extends DAO<Position>{
 
-	/** create final variable TABLE positions **/
-	private final String TABLE = "positions";
+	/** create final variable TABLE gridPosition **/
+	private final String TABLE = "gridPosition";
 	
 	@Override
 	/** implementation of find method for PositionDAO class **/
@@ -29,7 +29,7 @@ public class PositionDAO extends DAO<Position>{
                         id,
                         result.getInt("row"),
                         result.getInt("col"),
-                        result.getInt("player")
+                        result.getInt("id_player")
                 );
             }
 		}catch (SQLException ex){
