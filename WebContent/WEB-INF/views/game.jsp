@@ -11,6 +11,10 @@
 </head>
 <body>
 	<h1>Power4</h1>
+	<div>
+		<output id="playerName">You are the player : ${plName }</output><br>
+		<output id="opponentName">Opponent is : ${opName }</output>
+	</div>
 	<table width="500" height="500">
 		<tr>
 			<td></td>
@@ -48,5 +52,8 @@
 			<td></td>
 		</tr>
 	</table>
+	<section>
+		<output id="victory"></output>
+	</section>
 </body>
 </html>

@@ -6,10 +6,8 @@ jQuery(document).ready(function() {
 	
 	var col;
 	var row;
-	var turn = "X";
 	var player = "X";
 	var count = 0;
-	var gameStateString = "0000000000000000000000000";
 	
 	// Main function to create and update the game
 	$("td").on("click", function() {
@@ -32,19 +30,19 @@ jQuery(document).ready(function() {
 		}
 		// Checking the winning condition
 		if (hasWonHor(row) == 1){
-			alert("you wonHor")
+			$("#victory").text("Victoire");
 		}
 		
 		if (hasWonVert(col) == 1){
-			alert("you wonVert")
+			$("#victory").text("Victoire");
 		}
 		
 		if (hasWonDiagRight() == 1){
-			alert("you wonDiag")
+			$("#victory").text("Victoire");
 		}
 		
 		if (hasWonDiagLeft() == 1){
-			alert("you wonDiag")
+			$("#victory").text("Victoire");
 		}
 		// If it's the turn of the player, save the move in the changeStateString
 		if (turn == player){
@@ -53,36 +51,11 @@ jQuery(document).ready(function() {
 		console.log(gameStateString);
 		
 	})
-	
-	// Function to convert the index of the td being numbered from 0 to 4
-	// depending on the rows, to a number from 1 to 25.
-	function wichTd(col, row){
-		var x = 0;
-			if(row > 0)
-				x = row * 5 + (col + 1);
-			else x += (col+1);
-		return x;
-	}
-	
-	// This function updates the state of the game using a string
-	function gameState(row, col, turn) {
-		// The variable gamestring contains 25 characters which represents the 25 cells of the grid
-		// Every time a player clicks on a td, we use the index of that td to change
-		// a 0 to a 1 in the string
-		gameStateString = replaceAt(gameStateString,wichTd(col, row)-1,turn);
-		return gameStateString;
-	}
-	
+
 	function playerTurn() {
 		return (turn == "X") ? turn="O" : turn="X";
 	}
-	
-	// Function to put the move of a player in the gameStateString
-	function replaceAt(string, index, replace) {
-		console.log("index :" + index);
-		return string.substring(0, index) + replace + string.substring(index + 1);
-	}
-	
+
 	// Function to check a horizontal victory
 	function hasWonHor(rowNum) {
 		// First loop checks for a win starting from the first cell of a row

@@ -26,9 +26,17 @@ public class GameServlet extends HttpServlet{
 			throws ServletException, IOException {
 		
 		HttpSession session = req.getSession();
-		/*Debug
+
+		Player player = (Player)session.getAttribute("player");
+		Player opponent = (Player)session.getAttribute("opponent");
+		
+		String plName = player.getName();
+		String opName = opponent.getName();
+		req.setAttribute("plName", plName );
+		req.setAttribute("opName", opName );
+		
 		System.out.println("player in game " +session.getAttribute("player"));
-		System.out.println("opponent in game " +session.getAttribute("opponent"));*/
+		System.out.println("opponent in game " +session.getAttribute("opponent"));
 		if (req.getParameter("col") != null && req.getParameter("row") != null) {
 			int col = Integer.parseInt(req.getParameter("col"));
 			int row = Integer.parseInt(req.getParameter("row"));
@@ -37,7 +45,7 @@ public class GameServlet extends HttpServlet{
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 					DAO<Position> positionDAO = DAOFactory.getPositionDAO();
-					Position test = new Position(0,row,col,1);
+					Position test = new Position(row,col,player.getId());
 					test = positionDAO.create(test);
 				
 			} catch (ClassNotFoundException e) {
@@ -45,9 +53,9 @@ public class GameServlet extends HttpServlet{
 				e.printStackTrace();
 			}
 			
-				DAO<Game> gameDAO = DAOFactory.getGameDAO();
+				/*DAO<Game> gameDAO = DAOFactory.getGameDAO();
 				Game testGame = new Game(0,1,2);
-				testGame = gameDAO.create(testGame);
+				testGame = gameDAO.create(testGame);*/
 		}
 		// Fin du if général
 		req.getRequestDispatcher("/WEB-INF/views/game.jsp").forward(req, res);

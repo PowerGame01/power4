@@ -25,3 +25,20 @@ td{
 	height: 100px;
 }
 
+output{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+section{
+	text-align: center;
+}
+
+#opponentName{
+	text-align: right;
+}
+
+#victory{
+	font-size: 50px;
+	color: green;
+}

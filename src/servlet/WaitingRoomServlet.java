@@ -56,7 +56,7 @@ public class WaitingRoomServlet extends HttpServlet {
 				System.out.println(((PlayerDAO) playerDAO).findOpponent(session.getAttribute("player").toString()));
 				if(session.getAttribute("opponent") == null) {
 					req.setAttribute("opponent", session.getAttribute("opponent"));
-					req.getRequestDispatcher("/waitingRoom.jsp").forward(req, res);
+					req.getRequestDispatcher("/WEB-INF/views/waitingRoom.jsp").forward(req, res);
 				}else req.getRequestDispatcher("/game").forward(req, res);
 			}else {
 				try {
